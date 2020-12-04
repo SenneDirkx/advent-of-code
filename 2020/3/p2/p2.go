@@ -10,12 +10,16 @@ import (
 func main() {
 	data := readFile()
 	splittedData := parseData(data)
-	result := solution(splittedData, 3, 1)
+	result := 1
+	var options = [][]int{{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}}
+	for _, option := range options {
+		result *= solution(splittedData, option[0], option[1])
+	}
 	fmt.Println(result)
 }
 
 func readFile() string {
-	data, err := ioutil.ReadFile("./input.txt")
+	data, err := ioutil.ReadFile("../input.txt")
 	if err != nil {
 		log.Panicf("failed reading data from file: %s", err)
 	}
